@@ -1,0 +1,45 @@
+.container {
+    /* display: flex; */
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* width: 200px;
+    height: 120px; */
+}
+
+.item {
+    /* font-size: 1.7em; */
+    /* margin: 5px 15px 0 15px; */
+    padding: 5px;
+    background-color: grey;
+    color: black;
+    width: 60px;
+    text-align: center;
+    border-radius: 50%;
+    height: 50px;
+}
+
+.total {
+    font-size: 1.5em;
+    margin: 25px 15px 0 15px;
+    padding: 5px;
+    text-align: center;
+    background-color: Green;
+    color: white;
+    width: 200px;
+    border-radius: 50px;
+}
+
+.return {
+    font-size: 1.5em;
+    margin: 25px 15px 0 15px;
+    padding: 5px;
+    text-align: center;
+    background-color: Grey;
+    color: white;
+    width: 200px;
+    border-radius: 50px;
+}
+
+.total, .item, .return:hover {
+    cursor: pointer;
+}
