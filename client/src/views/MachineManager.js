@@ -1,41 +1,42 @@
-import styled from "styled-components";
-// import MoneyManager from '../components/MoneyManager';
-// import Operation from '../components/Operation';
-import React, { useState } from "react";
-// import MoneyManager from "../components/NewApproach/MoneyManager";
-// import Main from "../components/NewApproach/views/Main";
+
 import PurchaseHandler from "../components/PurchaseOperations/PurchaseHandler";
-import MoneyManager from "../components/MoneyOperations/MoneyManager";
-// import MoneyManager from "../components/MoneyManager";
+import React, {useState} from 'react'
+import TabPanel from '../components/TabPanel';
+import {Tabs, Tab, Box } from '@mui/material';
+import InventoryHandler from "../components/InventoryOperations/InventoryHandler";
 
+function a11yProps(index) {
+    return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+    };
+}
 
-
-const Cabinet = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-`;
 
 const MachineManager = (props) => {
-    const [coin, setCoin] = useState(0);
-    const [message, setMessage] = useState([]);
+    const [value, setValue] = useState(0);
 
-    const onCoinChanged = (total, newMessage) => {
-      setCoin(total);
-      setMessage([...message, newMessage]);
-    };
-
-    const onPurchase = price => {
-      setCoin(coin - price);
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
     };
 
     return (
-        <Cabinet>
-            {/* <Operation coin={coin} onPurchase={onPurchase}  message={message}/> */}
-            {/* <Main coin={coin} onPurchase={onPurchase}  message={message}/> */}
-            <PurchaseHandler coin={coin} onPurchase={onPurchase}  message={message}/>
-            <MoneyManager coin={coin} onCoinChanged={onCoinChanged} />
-        </Cabinet>
+        <>
+            <Box sx={{ width: '100%' }}>
+                <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                    <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+                        <Tab label="Customers" {...a11yProps(0)} />
+                        <Tab label="Owner" {...a11yProps(1)} />
+                    </Tabs>
+                </Box>
+                <TabPanel value={value} index={0}>
+                    <PurchaseHandler/>
+                </TabPanel>
+                <TabPanel value={value} index={1}>
+                    <InventoryHandler/>
+                </TabPanel>
+            </Box>
+        </>
     )
 }
 

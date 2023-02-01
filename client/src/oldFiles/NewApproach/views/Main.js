@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios';
-import TabPanel from '../components/TabPanel';
+import TabPanel from '../../../components/TabPanel';
 import './css/main.css'
 import {Tabs, Tab, Box } from '@mui/material';
 import Inventory from '../components/InventoryForm';

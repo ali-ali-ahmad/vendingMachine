@@ -1,0 +1,44 @@
+.container {
+    width: 425px;
+    display: flex;
+    /* flex-direction: row; */
+    flex-wrap: wrap;
+}
+
+.divBox {
+    border: 1px solid LIGHTSEAGREEN;
+    height: 100px;
+    width: 80px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 2px;
+    margin-top: 2px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px 2px;
+}
+
+.divName {
+    font-size: 0.9em;
+    text-align: center;
+    font-weight: bold;
+}
+
+.divPrice {
+    text-align: center;
+}
+
+.divQuantity {
+    text-align: center;
+}
+
+.divStatus {
+    height: 25px;
+    width: 90%;
+    margin: auto;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.total, .item, .return:hover {
+    cursor: pointer;
+}

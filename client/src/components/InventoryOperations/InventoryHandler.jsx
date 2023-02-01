@@ -1,12 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios';
-// import TabPanel from '../components/TabPanel';
-import './css/main.css'
-// import {Tabs, Tab, Box } from '@mui/material';
-import Inventory from '../components/InventoryForm';
 import Button from '@mui/material/Button';
-// import ItemList from '../components/ItemList';
-// import styled from "styled-components";
+import InventoryForm from './InventoryForm';
 
 
 const InventoryHandler = (props) => {
@@ -86,10 +81,10 @@ const InventoryHandler = (props) => {
     return (
         <>
             <h1>Add Items</h1>
-            <Inventory onSubmitProp={handleItem} items={items}>
+            <InventoryForm onSubmitProp={handleItem} items={items}>
                 <Button type='submit' variant="contained" color="success" onClick={() => setButtonType('add')}>Add</Button>
                 <Button type='submit' variant="contained" color="success" onClick={() => setButtonType('remove')}>Remove</Button>
-            </Inventory>
+            </InventoryForm>
             <p>{message}</p>
         </>
     )
