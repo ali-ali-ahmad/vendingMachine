@@ -19,7 +19,9 @@ const InventoryForm = (props) => {
 
     return  (
         <>
+        <div style={{width: "250px", textAlign: "center"}}>
             <form onSubmit={handleSubmit}>
+                <h1>Add Items</h1>
                 <div>
                     <Box
                         component="form"
@@ -62,6 +64,7 @@ const InventoryForm = (props) => {
                     {children}
                 </div>
             </form>
+        </div>
         </>
     )
 }

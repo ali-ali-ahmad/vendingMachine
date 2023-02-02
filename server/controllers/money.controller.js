@@ -1,10 +1,12 @@
 const {Money} = require('../models/money.model');
 
 module.exports.addMoney = (request, response) => {
-    const {moneyType, amount} = request.body;
+    const {moneyType, amount, value, quantity} = request.body;
     Money.create({
         moneyType,
-        amount
+        amount,
+        value,
+        quantity
     })
     .then(money => response.json(money))
     .catch(err => response.json(err));

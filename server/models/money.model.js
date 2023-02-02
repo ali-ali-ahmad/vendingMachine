@@ -6,5 +6,11 @@ const MoneySchema = new mongoose.Schema({
     amount: {
         type: Number
     },
+    value: {
+        type: Number
+    },
+    quantity: {
+        type: Number
+    },
 }, {timestamps: true});
 module.exports.Money = mongoose.model('Money', MoneySchema)

@@ -19,17 +19,16 @@ const MachineManager = (props) => {
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
-
     return (
         <>
             <Box sx={{ width: '100%' }}>
                 <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                    <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+                    <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" centered indicatorColor="secondary">
                         <Tab label="Customers" {...a11yProps(0)} />
                         <Tab label="Owner" {...a11yProps(1)} />
                     </Tabs>
                 </Box>
-                <TabPanel value={value} index={0}>
+                <TabPanel  value={value} index={0}>
                     <PurchaseHandler/>
                 </TabPanel>
                 <TabPanel value={value} index={1}>

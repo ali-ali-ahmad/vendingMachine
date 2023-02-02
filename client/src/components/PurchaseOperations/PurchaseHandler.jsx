@@ -6,9 +6,7 @@ import MoneyManager from '../MoneyOperations/MoneyManager';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
-const PurchaseHandler = (props) => {
-    const { total, change, onReturn } = props;
-    // const {coin, onPurchase, message, children } = props;
+const PurchaseHandler = () => {
     const [items, setItems] = useState({});
     const [selectedCode, setSelectedCode] = useState('');
     const [dispensedItem, setDispensedItem] = useState([]);
@@ -33,14 +31,21 @@ const PurchaseHandler = (props) => {
         setMessage([...message, newMessage]);
     };
 
-    // const onPurchase = price => {
-    //     setCoin(coin - price);
-    // };
-
     const handlePurchase = () => {
         const item = items.find(item => item.code === selectedCode);
         if (item && coin >= item.price) {
-        // onPurchase(item.price);
+            if ( parseInt(item.quantity) > 0 ) {
+                const updatedItem = {
+                    ...item,
+                    quantity: parseInt(item.quantity) - 1
+                };
+                axios.put('http://localhost:8000/api/items/' + item._id, updatedItem)
+                .then(res => {
+                    const newMessage = (`You have bought ${item.itemName}.`);
+                    setMessage([...message, newMessage]);
+                })
+                .catch(err => console.error(err));
+            }
         setCoin(coin - item.price);
         setDispensedItem([...dispensedItem, item]);
         setErrorMessage('');
@@ -58,7 +63,6 @@ const PurchaseHandler = (props) => {
         <div className={styles.container}>
             <div className={styles.machineItems}>
                 {loaded && <ItemList items={items} coin={coin}/>}
-                {/* {loaded && <ItemList items={items} coin={coin} onPurchase={onPurchase}/>} */}
             </div>
             <div>
                 <div className={styles.codeBox}>

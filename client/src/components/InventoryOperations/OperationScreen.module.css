@@ -1,0 +1,41 @@
+.displayScreen {
+    width: 500px;
+    height: 350px;
+    border: 1px solid black;
+    border-radius: 5px;
+    text-align: center;
+    margin-left: 10px;
+    margin-top: 3px;
+    box-shadow: 2px 2px 2px 2px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.msgDisplay {
+    width: 400px;
+    height: 150px;
+    border: 1px solid black;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 3px;
+    display: flex;
+    flex-direction: column-reverse;
+    overflow: auto;
+}
+
+.msgDisplay::-webkit-scrollbar {
+    width: 5px;
+}
+
+.msgDisplay::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+.msgDisplay::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    outline: 1px solid slategrey;
+    border-radius: 50px;
+}
