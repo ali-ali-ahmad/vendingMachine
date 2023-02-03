@@ -30,12 +30,6 @@ module.exports.updateItem = (request, response) => {
         .catch(err => response.json(err))
 }
 
-// module.exports.setPlayerStatus = (request, response) => {
-//     Player.findOneAndUpdate({_id: request.params.id}, request.body, {new:true})
-//         .then(updatedPlayer => response.json(updatedPlayer))
-//         .catch(err => response.json(err))
-// }
-
 module.exports.deleteItem = (request, response) => {
     Item.deleteOne({ _id: request.params.id })
         .then(deleteConfirmation => response.json(deleteConfirmation))

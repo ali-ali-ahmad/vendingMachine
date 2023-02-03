@@ -27,13 +27,18 @@ const PurchaseHandler = () => {
 
 
     const onCoinChanged = (total, newMessage) => {
+        // update the total value of the coin inserted, the total and the messages had been lefted from the MoneyManager component
         setCoin(total);
         setMessage([...message, newMessage]);
     };
 
     const handlePurchase = () => {
+        // find the selected item by its code
         const item = items.find(item => item.code === selectedCode);
+        // check if the item is found and if the inserted coin is sufficient to purchase it
         if (item && coin >= item.price) {
+            // check if the quantity of the item is greater than 0
+            // decrement the quantity of the item by 1 and update it in the database
             if ( parseInt(item.quantity) > 0 ) {
                 const updatedItem = {
                     ...item,
@@ -46,14 +51,19 @@ const PurchaseHandler = () => {
                 })
                 .catch(err => console.error(err));
             }
+        // subtract the price of the item from the inserted coin
         setCoin(coin - item.price);
+        // add the item to the list of dispensed items
         setDispensedItem([...dispensedItem, item]);
+        // reset the error message, if there is any
         setErrorMessage('');
         } else {
+        // set an error message if the item is not found or the inserted coin is not sufficient
         setErrorMessage('Invalid selection or insufficient balance');
         }
     }
 
+    // clear the list of dispensed items when the cutomer take their purchased items
     const onTake = () => {
     setDispensedItem([]);
     };

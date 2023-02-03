@@ -1,0 +1,87 @@
+@startuml Vending Machine Simple class design
+
+package "client" {
+    class InventoryOperations {
+        -itemName: String
+        -quantity: int
+        -price: float
+        -code: String
+
+        #InventoryForm(): 
+        #MoneyDisplay():
+        #OperationScreen():
+
+        +addItem()
+        +updateItem()
+        +removeItem()
+    }
+    class MoneyOperations {
+        -moneyType: String
+        -amount: int
+        -quantity: int
+        -value: int
+
+        #MoneyHandler()
+
+        +insertNewMoney()
+        +updateMoney()
+        +returnMoney()
+    }
+    class PurchaseOperations {
+        -displayMessages()
+
+        #ItemList(): displayItems
+        #takeBackChange()
+        #collectItems()
+
+        +purchaseItem()
+    }
+}
+
+package "server" {
+
+    class Item {
+        -itemName: String
+        -quantity: int
+        -price: float
+        -code: String
+
+        #ItemModel()
+        #ItemController()
+
+        +createItem(): ItemRoute
+        +getAllItems(): ItemRoute
+        +getItem(): ItemRoute
+        +updateItem(): ItemRoute
+        +deleteItem(): ItemRoute
+    }
+
+    class Money {
+        -moneyType: String
+        -amount: int
+        -value: int
+        -quantity: int
+
+        #MoneyModel()
+        #MoneyController()
+
+        +addMoney(): MoneyRoute
+        +getAllMoney(): MoneyRoute
+        +getMoney(): MoneyRoute
+        +updateMoney(): MoneyRoute
+        +deleteMoney(): MoneyRoute
+    }
+
+}
+
+Item --* InventoryOperations
+Money --* MoneyOperations
+
+
+
+PurchaseOperations o--* MoneyOperations
+
+
+InventoryOperations --o Money
+PurchaseOperations --o Item
+@enduml

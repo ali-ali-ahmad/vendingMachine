@@ -13,7 +13,9 @@ const InventoryForm = (props) => {
     
     const handleSubmit = (e) => {
         e.preventDefault();
+        // find an unused code from the machineCodes array
         const unusedCode = machineCodes.find(code => !items.find(p => p.code === code.code));
+        // call the onSubmitProp function and pass the form data as an object to the InvetoryHandler component
         onSubmitProp({itemName, quantity, price, code:unusedCode.code});
     }
 

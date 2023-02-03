@@ -1,0 +1,170 @@
+@startuml Vending Machine
+
+package "client" {
+
+    package "components" {
+        package "InventoryOperations" {
+            class InventoryForm {
+                +itemName: String
+                +quantity: int
+                +price: float
+            }
+
+            class MoneyDisplay {
+                +displayMoney()
+            }
+
+            class OperationScreen {
+                +displayMessage()
+            }
+
+            class InventoryHandler {
+                -inventoryOperations: InventoryOperations
+                +addItem()
+                +updateItem()
+                +removeItem()
+            }
+        }
+        
+        package "MoneyOperations" {
+            class MoneyHandler {
+                +insertMoney()
+            }
+
+            class MoneyManager {
+                -moneyOperations: MoneyOperations
+                +insertNewMoney()
+                +updateMoney()
+                +returnMoney()
+            }
+        }
+        
+        package "PurchaseOperations" {
+            class ItemList {
+                +displayItems()
+            }
+
+            class PurchaseHandler {
+                -purchaseOperations: PurchaseOperations
+                +purchaseItem()
+                +displayMessage()
+                +collectItems()
+                +takeBackChange()
+            }
+        }
+        
+        class SlotCodes {
+            +slotCodes: int[25]
+        }
+    }
+
+    package "views" {
+        class MachineManager {
+            -inventoryHandler: InventoryHandler
+            -purchaseHandler: PurchaseHandler
+            +displayOperations()
+        }
+
+        class TabPanel {
+            +displayComponents()
+        }
+    }
+
+    class App {
+        -machineManager: MachineManager
+    }
+}
+package "server" {
+
+    package "models" {
+        class ItemModel {
+            +itemName: String
+            +quantity: int
+            +price: float
+            +code: String
+        }
+
+        class MoneyModel {
+            +moneyType: String
+            +amount: int
+            +value: int
+            +quantity: int
+        }
+    }
+    package "controllers" {
+        class ItemController {
+            +createItem()
+            +getAllItems()
+            +getItem()
+            +updateItem()
+            +deleteItem()
+        }
+
+        class MoneyController {
+            +addMoney()
+            +getAllMoney()
+            +getMoney()
+            +updateMoney()
+            +deleteMoney()
+        }
+    }
+    package "routes" {
+        class ItemRoute {
+            +createItem()
+            +getAllItems()
+            +getItem()
+            +updateItem()
+            +deleteItem()
+        }
+
+        class MoneyRoute {
+            +addMoney()
+            +getAllMoney()
+            +getMoney()
+            +updateMoney()
+            +deleteMoney()
+        }
+    }
+
+    class serverJS
+
+}
+MachineManager --* App
+
+InventoryHandler --* MachineManager
+PurchaseHandler --* MachineManager
+TabPanel --o MachineManager
+
+InventoryForm --* InventoryHandler
+MoneyDisplay --* InventoryHandler
+OperationScreen --* InventoryHandler
+
+
+MoneyHandler --* MoneyManager
+
+MoneyManager -- PurchaseHandler: association (ManyToMany)
+
+ItemList --* PurchaseHandler
+
+SlotCodes --o ItemList
+SlotCodes --o InventoryForm
+
+ItemModel --* ItemController
+ItemController --* ItemRoute
+
+MoneyModel --* MoneyController
+MoneyController --* MoneyRoute
+
+serverJS --o ItemModel
+serverJS --o MoneyModel
+
+ItemRoute --o InventoryHandler
+MoneyRoute --o InventoryHandler
+
+MoneyRoute --o MoneyManager
+
+ItemRoute --o PurchaseHandler
+
+
+@enduml
+

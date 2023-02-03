@@ -14,10 +14,14 @@ const DivStatus = styled.div`
 
 const ItemList = (props) => {
     const { items, coin } = props;
+    // state that holds the ready codes which they are used to be displayed in the items slots
     const [machineCodes] = useState(slotCodes);
 
+    // in the return, the codes are being displayed through mapping, and if the existing items match the code then they take place in the empty slot
+    // there is also a functionality to check if the inserted money is greater that the item price, if so it change the color from red to green to notify the customer that they can buy that partiular item
     return (
         <>
+        
             <div className={styles.container}>
                 {machineCodes.map(code => {
                     const item = items.find(p => p.code === code.code);

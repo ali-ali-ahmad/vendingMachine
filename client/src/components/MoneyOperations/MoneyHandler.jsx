@@ -6,10 +6,10 @@ import styles from './MoneyHandler.module.css'
 
 
 const MoneyHandler = (props) => {
-    const {onMoneyInserted, total} = props;
+    const {onMoneyInserted} = props;
     const [amount, setAmount] = useState(0);
 
-
+// this handled deals with the inserted money type and it values and pass it over to the moneyMnager component
     const handleInsert = (moneyType, amount, value) => {
         onMoneyInserted({moneyType, amount, quantity:1, value});
         setAmount(0);
@@ -37,7 +37,7 @@ const MoneyHandler = (props) => {
                 <form onSubmit={(e) => {e.preventDefault(); handleInsert("credit card", amount)}}>
                     <div className={styles.creditCardText}>
                         <h4>Credit Card:</h4>
-                        <h4>Card Balance: ₪{total}</h4>
+                        <h4>Card Balance: ₪{amount}</h4>
                     </div>
                     <div>
                         <Box

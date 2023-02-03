@@ -11,7 +11,7 @@ import Paper from '@mui/material/Paper';
 const MoneyDisplay = (props) => {
     const {allMoney} = props;
 
-
+// all the money that has been added by the custtomers being displayed in the table
     return (
         <div style={{width: "400px", textAlign: "center"}}>
             <h3>Your current money in the machine</h3>

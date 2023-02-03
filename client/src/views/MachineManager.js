@@ -5,6 +5,7 @@ import TabPanel from '../components/TabPanel';
 import {Tabs, Tab, Box } from '@mui/material';
 import InventoryHandler from "../components/InventoryOperations/InventoryHandler";
 
+// this function is related to the tabs functionality
 function a11yProps(index) {
     return {
     id: `simple-tab-${index}`,
@@ -16,6 +17,7 @@ function a11yProps(index) {
 const MachineManager = (props) => {
     const [value, setValue] = useState(0);
 
+    // this function is related to the tabs functionality 
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };

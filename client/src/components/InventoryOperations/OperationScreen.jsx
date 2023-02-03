@@ -5,7 +5,7 @@ import styles from './OperationScreen.module.css'
 const OperationScreen = (props) => {
     const {allMessages} = props;
 
-
+// all the Messages that been created in the InventoryHandler are being displayed here through mapping
     return (
         <div className={styles.displayScreen}>
             <div>
